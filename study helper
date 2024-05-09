@@ -1,0 +1,77 @@
+import time
+
+# Function for focus mode
+def focus_mode(duration):
+    print("Focus mode activated for {} minutes.".format(duration))
+    time.sleep(duration * 60)
+    print("Focus mode ended.")
+
+# Function for group mode
+def group_mode():
+    print("Group mode activated.")
+    # Add functionality for group mode here
+
+# Function for to-do list
+def to_do_list():
+    tasks = []
+    print("To-Do List\n---------")
+    while True:
+        print("1. Add task")
+        print("2. View tasks")
+        print("3. Mark task as completed")
+        print("4. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            task = input("Enter task: ")
+            tasks.append(task)
+        elif choice == "2":
+            print("Tasks:")
+            for index, task in enumerate(tasks, 1):
+                print("{}. {}".format(index, task))
+        elif choice == "3":
+            task_index = int(input("Enter task number to mark as completed: "))
+            del tasks[task_index - 1]
+        elif choice == "4":
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+# Function for alarm mode
+def alarm_mode():
+    alarm_time = input("Enter alarm time (format HH:MM): ")
+    while True:
+        current_time = time.strftime("%H:%M")
+        if current_time == alarm_time:
+            print("ALARM!")
+            break
+        else:
+            time.sleep(10)  # Check every 10 seconds
+
+# Main program
+if __name__ == "__main__":
+    print("Welcome to Study Helper!")
+
+    while True:
+        print("\nModes:")
+        print("1. Focus mode")
+        print("2. Group mode")
+        print("3. To-Do List")
+        print("4. Alarm mode")
+        print("5. Exit")
+        mode = input("Enter mode number: ")
+
+        if mode == "1":
+            duration = int(input("Enter duration for focus mode (in minutes): "))
+            focus_mode(duration)
+        elif mode == "2":
+            group_mode()
+        elif mode == "3":
+            to_do_list()
+        elif mode == "4":
+            alarm_mode()
+        elif mode == "5":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid mode number. Please try again.")
